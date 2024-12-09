@@ -74,8 +74,18 @@ public class BackDoorView implements Observer
     cp.add( theBtRStock );                          //  Add to canvas
 
     theBtClear.setBounds( 16, 25+60*2, 80, 40 );    // Buy button 
-    theBtClear.addActionListener(                   // Call back code
-      e -> cont.doClear() );
+    theBtClear.addActionListener(e -> {
+        // Reset the input fields
+        theInput.setText("");               // Clear product number input
+        theInputNo.setText("1");            // Reset quantity input to 0
+        theAction.setText("");              // Clear action message
+        theOutput.setText("");             // Clear the output text area
+
+        // Call the model's doClear method
+        cont.doClear();
+    });
+    //theBtClear.addActionListener(                   // Call back code
+      //e -> cont.doClear() );
     cp.add( theBtClear );                           //  Add to canvas
 
  

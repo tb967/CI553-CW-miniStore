@@ -25,9 +25,9 @@ public class CashierController
    * Check interaction from view
    * @param pn The product number to be checked
    */
-  public void doCheck( String pn )
+  public void doCheck( String pn, int buyQuantity  )
   {
-    model.doCheck(pn);
+    model.doCheck(pn, buyQuantity);
   }
 
    /**
@@ -36,6 +36,14 @@ public class CashierController
   public void doBuy()
   {
     model.doBuy();
+  }
+  
+  /**
+   * Clears all fields and resets the model.
+   */
+  public void doClearFields() {
+      model.resetBasket();
+      view.clearFields();
   }
   
    /**
