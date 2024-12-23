@@ -26,6 +26,7 @@ public class PackingView implements Observer
   private final JTextArea   theOutput  = new JTextArea();
   private final JScrollPane theSP      = new JScrollPane();
   private final JButton     theBtPack= new JButton( PACKED );
+  private final JButton theBtClear = new JButton("Clear");  // Clear button
  
   private OrderProcessing theOrder     = null;
   
@@ -52,6 +53,7 @@ public class PackingView implements Observer
     cp.setLayout(null);                             // No layout manager
     rootWindow.setSize( W, H );                     // Size of Window
     rootWindow.setLocation( x, y );
+    cp.setBackground(new Color(190, 150, 120));
     
     Font f = new Font("Monospaced",Font.PLAIN,12);  // Font f is
     
@@ -60,9 +62,18 @@ public class PackingView implements Observer
     cp.add( pageTitle );
 
     theBtPack.setBounds( 16, 25+60*0, 80, 40 );   // Check Button
+    theBtPack.setBackground(new Color(205, 179, 139));
     theBtPack.addActionListener(                   // Call back code
       e -> cont.doPacked() );
     cp.add( theBtPack );                          //  Add to canvas
+    
+    theBtClear.setBounds(16, 25 + 60 * 1, 80, 40);  // Clear button
+    theBtClear.setBackground(new Color(205, 179, 139));
+    theBtClear.addActionListener(e -> {
+        theOutput.setText("");    // Clear the text area
+        theAction.setText("");    // Clear the action message
+    });
+    cp.add(theBtClear);
 
     theAction.setBounds( 110, 25 , 270, 20 );       // Message area
     theAction.setText( "" );                        // Blank

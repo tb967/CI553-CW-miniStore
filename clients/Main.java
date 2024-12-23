@@ -29,9 +29,43 @@ import java.awt.*;
 
 class Main
 {
+  private static final int SPLASH_SCREEN_DURATION = 6000; // Displays welcome screen for 6 seconds
+	
   public static void main (String args[])
   {
-    new Main().begin();
+	new Main().showWelcomeScreen();
+    // new Main().begin();
+  }
+  
+  /**
+   * Displays the welcome screen for 6 seconds, then launches the application.
+   */
+  public void showWelcomeScreen() {
+      JFrame welcomeFrame = new JFrame("Welcome");
+      welcomeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      welcomeFrame.setSize(400, 300);
+      welcomeFrame.setLocationRelativeTo(null); // Centre the frame
+      welcomeFrame.setUndecorated(true); // Remove window borders
+
+      // Add a welcome message panel
+      JPanel panel = new JPanel();
+      panel.setBackground(new Color(205, 179, 139)); // Pastel brown background
+      JLabel welcomeLabel = new JLabel("Welcome to Mini Store!", SwingConstants.CENTER);
+      welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
+      welcomeLabel.setForeground(Color.WHITE); // White text colour
+      panel.setLayout(new BorderLayout());
+      panel.add(welcomeLabel, BorderLayout.CENTER);
+
+      welcomeFrame.add(panel);
+      welcomeFrame.setVisible(true);
+
+      // Timer to close the splash screen and start the main application
+      Timer timer = new Timer(SPLASH_SCREEN_DURATION, e -> {
+          welcomeFrame.dispose(); // Close the splash screen
+          begin(); // Launch the main application
+      });
+      timer.setRepeats(false); // Ensure the timer only runs once
+      timer.start();
   }
 
   /**
@@ -39,6 +73,13 @@ class Main
    */
   public void begin()
   {
+	// Set Metal Look and Feel
+	try {
+	    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	  
     //DEBUG.set(true); /* Lots of debug info */
     MiddleFactory mlf = new LocalMiddleFactory();  // Direct access
     startCustomerGUI_MVC( mlf );
