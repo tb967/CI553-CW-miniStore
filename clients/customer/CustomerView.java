@@ -23,7 +23,7 @@ public class CustomerView implements PropertyChangeListener
 {
   class Name                              // Names of buttons
   {
-    public static final String CHECK  = "Check";
+    public static final String CHECK  = "<html>Check <br>ID</html>";
     public static final String CLEAR  = "Clear";
   }
 
@@ -36,7 +36,7 @@ public class CustomerView implements PropertyChangeListener
   private final JTextArea   theOutput  = new JTextArea();
   private final JScrollPane theSP      = new JScrollPane();
   private final JButton     theBtCheck = new JButton( Name.CHECK );
-  private final JButton     theBtCheckName = new JButton( "CheckName" );
+  private final JButton     theBtCheckName = new JButton( "<html>Check<br>Name</html>" );
   private final JButton     theBtClear = new JButton( Name.CLEAR );
 
   private CustomerModel model;
@@ -71,7 +71,7 @@ public class CustomerView implements PropertyChangeListener
     Font f = new Font("Monospaced",Font.PLAIN,12);  // Font f is
     
     pageTitle.setBounds( 110, 0 , 270, 20 );       
-    pageTitle.setText( "Search products" );                        
+    pageTitle.setText( "Search products by ID or by Name." );                        
     cp.add( pageTitle );
 
     theBtCheck.setBounds( 16, 25+60*0, 80, 40 );    // Check button
@@ -102,7 +102,7 @@ public class CustomerView implements PropertyChangeListener
     cp.add( theInput );                             //  Add to canvas
     
     theSP.setBounds( 110, 100, 270, 160 );          // Scrolling pane
-    theOutput.setText( "" );                        //  Blank
+    theOutput.setText( "Your search will appear here." );     //  Blank
     theOutput.setFont( f );                         //  Uses font  
     cp.add( theSP );                                //  Add to canvas
     theSP.getViewport().add( theOutput );           //  In TextArea
@@ -169,8 +169,8 @@ public void propertyChange(PropertyChangeEvent evt) {
 	case "doClear":
 		thePicture.clear();
 		theInput.setText("");
-		theOutput.setText("");
-		theAction.setText("Enter Product Number or Product Name");
+		theOutput.setText("Start a new search.");
+		theAction.setText("");
 		break;
 	}
 }

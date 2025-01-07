@@ -23,7 +23,7 @@ public class CashierView implements Observer
   private static final String CHECK  = "Check";
   private static final String BUY    = "Buy";
   private static final String CLEAR  = "Clear";
-  private static final String BOUGHT = "Bought/Pay";
+  private static final String BOUGHT = "<html>Bought<br>/Pay</html>";
 
   private final JLabel      pageTitle  = new JLabel();
   private final JLabel      theAction  = new JLabel();
@@ -69,11 +69,11 @@ public class CashierView implements Observer
     Font f = new Font("Monospaced",Font.PLAIN,12);  // Font f is
 
     pageTitle.setBounds( 110, 0 , 270, 20 );       
-    pageTitle.setText( "Thank You for Shopping at MiniStrore" );                        
+    pageTitle.setText( "Welcome!" );                        
     cp.add( pageTitle );  
     
     theBtCheck.setBounds( 16, 25+60*0, 80, 40 );    // Check Button
-    theBtCheck.setBackground(new Color(220, 208, 255));             // Light blue background
+    theBtCheck.setBackground(new Color(220, 208, 255));             // Purple background
     theBtCheck.addActionListener(                   // Call back code
       e -> cont.doCheck( theInput.getText(), Integer.parseInt(buyQuantity.getText()) ) );
     cp.add( theBtCheck );                           //  Add to canvas
@@ -139,11 +139,11 @@ public class CashierView implements Observer
     theAction.setText( message );
     Basket basket = model.getBasket();
     if ( basket == null )
-      theOutput.setText( "Customers order" );
+      theOutput.setText( "Customer's order." );
     else
       theOutput.setText( basket.getDetails() );
     
-    theInput.requestFocus();               // Focus is here
+      theInput.requestFocus();               // Focus is here
     
     if (message.equals("!!! Not in stock") || message.contains("Purchased ")) {
     	buyQuantity.setText("1");

@@ -63,14 +63,14 @@ public class PackingView implements Observer
 
     theBtPack.setBounds( 16, 25+60*0, 80, 40 );   // Check Button
     theBtPack.setBackground(new Color(205, 179, 139));
-    theBtPack.addActionListener(                   // Call back code
-      e -> cont.doPacked() );
+    theBtPack.addActionListener(                    // Call back code
+    		e -> cont.doPacked() );
     cp.add( theBtPack );                          //  Add to canvas
     
     theBtClear.setBounds(16, 25 + 60 * 1, 80, 40);  // Clear button
     theBtClear.setBackground(new Color(205, 179, 139));
     theBtClear.addActionListener(e -> {
-        theOutput.setText("");    // Clear the text area
+        theOutput.setText("Fields cleared, pack another order."); // Add message to text area after clearing
         theAction.setText("");    // Clear the action message
     });
     cp.add(theBtClear);
@@ -100,7 +100,7 @@ public class PackingView implements Observer
   @Override
   public void update( Observable modelC, Object arg )
   {
-	  PackingModel model  = (PackingModel) modelC;
+	PackingModel model  = (PackingModel) modelC;
     String        message = (String) arg;
     theAction.setText( message );
     
@@ -109,7 +109,7 @@ public class PackingView implements Observer
     {
       theOutput.setText( basket.getDetails() );
     } else {
-      theOutput.setText("");
+      theOutput.setText("Pack or clear your order here.");
     }
   }
 

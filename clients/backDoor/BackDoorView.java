@@ -85,12 +85,8 @@ public class BackDoorView implements Observer
         theInputNo.setText("0");            // Reset quantity input to 0
         theAction.setText("");              // Clear action message
         theOutput.setText("");             // Clear the output text area
-
-        // Call the model's doClear method
-        cont.doClear();
+        cont.doClear();       // Call the model's doClear method
     });
-    //theBtClear.addActionListener(                   // Call back code
-      //e -> cont.doClear() );
     cp.add( theBtClear );                           //  Add to canvas
 
  
@@ -103,11 +99,11 @@ public class BackDoorView implements Observer
     cp.add( theInput );                             //  Add to canvas
     
     theInputNo.setBounds( 260, 50, 120, 40 );       // Input Area
-    theInputNo.setText("0");                        // 0
+    theInputNo.setText("1");                        // Default set to 1
     cp.add( theInputNo );                           //  Add to canvas
 
     theSP.setBounds( 110, 100, 270, 160 );          // Scrolling pane
-    theOutput.setText( "" );                        //  Blank
+    theOutput.setText( "Stock information." );  //  Text
     theOutput.setFont( f );                         //  Uses font  
     cp.add( theSP );                                //  Add to canvas
     theSP.getViewport().add( theOutput );           //  In TextArea

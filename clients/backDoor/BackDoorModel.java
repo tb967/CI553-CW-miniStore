@@ -137,7 +137,7 @@ public class BackDoorModel extends Observable
   {
     String theAction = "";
     theBasket.clear();                        // Clear s. list
-    theAction = "Enter Product Number";       // Set display
+    theAction = "Enter Product ID";           // Set display
     setChanged(); notifyObservers(theAction);  // inform the observer view that model changed
   }
   

@@ -17,6 +17,10 @@ import middle.LocalMiddleFactory;
 import middle.MiddleFactory;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Starts all the clients (user interface)  as a single application.
@@ -29,7 +33,9 @@ import java.awt.*;
 
 class Main
 {
-  private static final int SPLASH_SCREEN_DURATION = 6000; // Displays welcome screen for 6 seconds
+  private static final int SPLASH_SCREEN_DURATION = 5000; // Displays welcome screen for 5 seconds
+  private static final int GOODBYE_SCREEN_DURATION = 5000; // Goodbye screen duration in milliseconds
+  private final List<JFrame> windows = new ArrayList<>(); // Track all windows
 	
   public static void main (String args[])
   {
@@ -38,7 +44,7 @@ class Main
   }
   
   /**
-   * Displays the welcome screen for 6 seconds, then launches the application.
+   * Displays the welcome screen for 5 seconds, then launches the application.
    */
   public void showWelcomeScreen() {
       JFrame welcomeFrame = new JFrame("Welcome");
@@ -49,7 +55,7 @@ class Main
 
       // Add a welcome message panel
       JPanel panel = new JPanel();
-      panel.setBackground(new Color(205, 179, 139)); // Pastel brown background
+      panel.setBackground(new Color(0, 0, 139)); // Dark blue background
       JLabel welcomeLabel = new JLabel("Welcome to Mini Store!", SwingConstants.CENTER);
       welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
       welcomeLabel.setForeground(Color.WHITE); // White text colour
@@ -90,15 +96,65 @@ class Main
   }
   
   /**
+   * Creates a JFrame window with the specified title and sets up an exit listener.
+   */
+  private JFrame createWindow(String title) {
+      JFrame window = new JFrame(title);
+      window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+      window.setSize(400, 300);
+      window.setLocationRelativeTo(null);
+
+      window.addWindowListener(new WindowAdapter() {
+          @Override
+          public void windowClosing(WindowEvent e) {
+              closeWindowsShowGbScreen();
+          }
+      });
+
+      return window;
+  }
+
+  private void closeWindowsShowGbScreen() {
+      for (JFrame window : windows) {
+          window.dispose();
+      }
+      windows.clear(); // Clear the list after disposing of windows
+      showGoodbyeScreen();
+  }
+
+  /**
+   * Displays the goodbye screen for 5 seconds before exiting the application.
+   */
+  private void showGoodbyeScreen() {
+      JFrame goodbyeFrame = new JFrame("Goodbye");
+      goodbyeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      goodbyeFrame.setSize(400, 300);
+      goodbyeFrame.setLocationRelativeTo(null); // Centre the frame
+      goodbyeFrame.setUndecorated(true); // Remove window borders
+
+      JLabel goodbyeLabel = new JLabel("Goodbye, Thank You for Shopping at Mini Store!", SwingConstants.CENTER);
+      goodbyeLabel.setFont(new Font("Arial", Font.BOLD, 16));
+      goodbyeLabel.setForeground(Color.WHITE); // White text colour
+      goodbyeFrame.getContentPane().setBackground(new Color(0, 0, 139)); // Dark blue background
+      goodbyeFrame.add(goodbyeLabel);
+
+      goodbyeFrame.setVisible(true);
+
+      // Timer to close the goodbye screen and terminate the application
+      Timer timer = new Timer(GOODBYE_SCREEN_DURATION, e -> System.exit(0));
+      timer.setRepeats(false);
+      timer.start();
+  }
+  
+  /**
   * start the Customer client, -search product
   * @param mlf A factory to create objects to access the stock list
   */
   public void startCustomerGUI_MVC(MiddleFactory mlf )
   {
-    JFrame  window = new JFrame();
-    window.setTitle( "Customer Client MVC");
-    window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-    Dimension pos = PosOnScrn.getPos();
+	JFrame window = createWindow("Customer Client MVC");
+	windows.add(window); // Add to list
+	Dimension pos = PosOnScrn.getPos();
     
     CustomerModel model      = new CustomerModel(mlf);
     CustomerView view        = new CustomerView( window, mlf, pos.width, pos.height );
@@ -117,9 +173,8 @@ class Main
    */
   public void startCashierGUI_MVC(MiddleFactory mlf )
   {
-    JFrame  window = new JFrame();
-    window.setTitle( "Cashier Client MVC");
-    window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+    JFrame window = createWindow("Cashier Client MVC");
+    windows.add(window); // Add to list
     Dimension pos = PosOnScrn.getPos();
     
     BetterCashierModel model      = new BetterCashierModel(mlf);
@@ -139,11 +194,9 @@ class Main
   
   public void startPackingGUI_MVC(MiddleFactory mlf)
   {
-    JFrame  window = new JFrame();
-
-    window.setTitle( "Packing Client MVC");
-    window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-    Dimension pos = PosOnScrn.getPos();
+	JFrame window = createWindow("Packing Client MVC");
+	windows.add(window); // Add to list
+	Dimension pos = PosOnScrn.getPos();
     
     PackingModel model      = new PackingModel(mlf);
     PackingView view        = new PackingView( window, mlf, pos.width, pos.height );
@@ -160,10 +213,8 @@ class Main
    */
   public void startBackDoorGUI_MVC(MiddleFactory mlf )
   {
-    JFrame  window = new JFrame();
-
-    window.setTitle( "BackDoor Client MVC");
-    window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+    JFrame window = createWindow("BackDoor Client MVC");
+    windows.add(window); // Add to list
     Dimension pos = PosOnScrn.getPos();
     
     BackDoorModel model      = new BackDoorModel(mlf);
@@ -174,5 +225,5 @@ class Main
     model.addObserver( view );       // Add observer to the model
     window.setVisible(true);         // Make window visible
   }
-  
+ 
 }
