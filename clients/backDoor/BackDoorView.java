@@ -56,7 +56,7 @@ public class BackDoorView implements Observer
     cp.setLayout(null);                             // No layout manager
     rootWindow.setSize( W, H );                     // Size of Window
     rootWindow.setLocation( x, y );
-    cp.setBackground(new Color(255, 204, 178));
+    cp.setBackground(new Color(255, 204, 178)); // Peach background
     
     Font f = new Font("Monospaced",Font.PLAIN,12);  // Font f is
 
@@ -65,13 +65,13 @@ public class BackDoorView implements Observer
     cp.add( pageTitle );
     
     theBtQuery.setBounds( 16, 25+60*0, 80, 40 );    // Buy button 
-    theBtQuery.setBackground(new Color(255, 223, 186));
+    theBtQuery.setBackground(new Color(255, 223, 186)); // Light pastel orange background
     theBtQuery.addActionListener(                   // Call back code
       e -> cont.doQuery( theInput.getText() ) );
     cp.add( theBtQuery );                           //  Add to canvas
 
     theBtRStock.setBounds( 16, 25+60*1, 80, 40 );   // Check Button
-    theBtRStock.setBackground(new Color(255, 223, 186));
+    theBtRStock.setBackground(new Color(255, 223, 186)); // Light pastel orange background
     theBtRStock.addActionListener(                  // Call back code
       e -> cont.doRStock( theInput.getText(),
                           theInputNo.getText() ) );

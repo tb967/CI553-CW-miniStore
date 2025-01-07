@@ -53,7 +53,7 @@ public class PackingView implements Observer
     cp.setLayout(null);                             // No layout manager
     rootWindow.setSize( W, H );                     // Size of Window
     rootWindow.setLocation( x, y );
-    cp.setBackground(new Color(190, 150, 120));
+    cp.setBackground(new Color(190, 150, 120));  // Pastel brown background
     
     Font f = new Font("Monospaced",Font.PLAIN,12);  // Font f is
     
@@ -62,13 +62,13 @@ public class PackingView implements Observer
     cp.add( pageTitle );
 
     theBtPack.setBounds( 16, 25+60*0, 80, 40 );   // Check Button
-    theBtPack.setBackground(new Color(205, 179, 139));
+    theBtPack.setBackground(new Color(205, 179, 139));  // Light pastel brown background
     theBtPack.addActionListener(                    // Call back code
     		e -> cont.doPacked() );
     cp.add( theBtPack );                          //  Add to canvas
     
     theBtClear.setBounds(16, 25 + 60 * 1, 80, 40);  // Clear button
-    theBtClear.setBackground(new Color(205, 179, 139));
+    theBtClear.setBackground(new Color(205, 179, 139)); // Light pastel brown background
     theBtClear.addActionListener(e -> {
         theOutput.setText("Fields cleared, pack another order."); // Add message to text area after clearing
         theAction.setText("");    // Clear the action message

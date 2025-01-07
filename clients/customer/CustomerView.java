@@ -66,7 +66,7 @@ public class CustomerView implements PropertyChangeListener
     cp.setLayout(null);                             // No layout manager
     rootWindow.setSize( W, H );                     // Size of Window
     rootWindow.setLocation( x, y );
-    cp.setBackground(new Color(174, 198, 207)); //
+    cp.setBackground(new Color(174, 198, 207)); // Pastel blue background
 
     Font f = new Font("Monospaced",Font.PLAIN,12);  // Font f is
     
@@ -75,20 +75,20 @@ public class CustomerView implements PropertyChangeListener
     cp.add( pageTitle );
 
     theBtCheck.setBounds( 16, 25+60*0, 80, 40 );    // Check button
-    theBtCheck.setBackground(new Color(153, 217, 234));
+    theBtCheck.setBackground(new Color(153, 217, 234)); // Light pastel blue background
     theBtCheck.addActionListener(                   // Call back code
       e -> cont.doCheck( theInput.getText() ) );
     cp.add( theBtCheck );                           //  Add to canvas
 
     theBtCheckName.setBounds( 16, 25+60*1, 80, 40 );    // Check button
-    theBtCheckName.setBackground(new Color(153, 217, 234));
+    theBtCheckName.setBackground(new Color(153, 217, 234)); // Light pastel blue background
     theBtCheckName.setForeground(Color.RED);
     theBtCheckName.addActionListener(                   // Call back code
       e -> cont.doCheckByName( theInput.getText() ) );
     cp.add( theBtCheckName ); 
     
     theBtClear.setBounds( 16, 25+60*2, 80, 40 );    // Clear button
-    theBtClear.setBackground(new Color(153, 217, 234));
+    theBtClear.setBackground(new Color(153, 217, 234)); // Light pastel blue background
     theBtClear.addActionListener(                   // Call back code
       e -> cont.doClear() );
     cp.add( theBtClear );                           //  Add to canvas

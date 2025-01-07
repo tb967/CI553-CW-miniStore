@@ -47,9 +47,9 @@ class Main
    * Displays the welcome screen for 5 seconds, then launches the application.
    */
   public void showWelcomeScreen() {
-      JFrame welcomeFrame = new JFrame("Welcome");
+      JFrame welcomeFrame = new JFrame("Welcome");  // Welcome message
       welcomeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      welcomeFrame.setSize(400, 300);
+      welcomeFrame.setSize(400, 300);  // Size of the frame
       welcomeFrame.setLocationRelativeTo(null); // Centre the frame
       welcomeFrame.setUndecorated(true); // Remove window borders
 
@@ -100,13 +100,13 @@ class Main
    */
   private JFrame createWindow(String title) {
       JFrame window = new JFrame(title);
-      window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-      window.setSize(400, 300);
+      window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Application transitions from interfaces to goodbye screen
+      window.setSize(400, 300);  // Size of the window
       window.setLocationRelativeTo(null);
 
       window.addWindowListener(new WindowAdapter() {
           @Override
-          public void windowClosing(WindowEvent e) {
+          public void windowClosing(WindowEvent e) { // Displays goodbye screen
               closeWindowsShowGbScreen();
           }
       });
@@ -128,7 +128,7 @@ class Main
   private void showGoodbyeScreen() {
       JFrame goodbyeFrame = new JFrame("Goodbye");
       goodbyeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      goodbyeFrame.setSize(400, 300);
+      goodbyeFrame.setSize(400, 300);  // Size of the frame
       goodbyeFrame.setLocationRelativeTo(null); // Centre the frame
       goodbyeFrame.setUndecorated(true); // Remove window borders
 

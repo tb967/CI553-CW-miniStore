@@ -64,7 +64,7 @@ public class CashierView implements Observer
     cp.setLayout(null);                             // No layout manager
     rootWindow.setSize( W, H );                     // Size of Window
     rootWindow.setLocation( x, y );
-    cp.setBackground(new Color(204, 179, 255));
+    cp.setBackground(new Color(204, 179, 255)); // Pastel purple background
 
     Font f = new Font("Monospaced",Font.PLAIN,12);  // Font f is
 
@@ -73,24 +73,24 @@ public class CashierView implements Observer
     cp.add( pageTitle );  
     
     theBtCheck.setBounds( 16, 25+60*0, 80, 40 );    // Check Button
-    theBtCheck.setBackground(new Color(220, 208, 255));             // Purple background
+    theBtCheck.setBackground(new Color(220, 208, 255));  // Light pastel purple background
     theBtCheck.addActionListener(                   // Call back code
       e -> cont.doCheck( theInput.getText(), Integer.parseInt(buyQuantity.getText()) ) );
     cp.add( theBtCheck );                           //  Add to canvas
 
     theBtBuy.setBounds( 16, 25+60*1, 80, 40 );      // Buy button 
-    theBtBuy.setBackground(new Color(220, 208, 255));
+    theBtBuy.setBackground(new Color(220, 208, 255)); // Light pastel purple background
     theBtBuy.addActionListener(                     // Call back code
       e -> cont.doBuy() );
     cp.add( theBtBuy );                             //  Add to canvas
 
     theBtClear.setBounds(16, 25+60*2, 80, 40);  // Clear Button position
-    theBtClear.setBackground(new Color(220, 208, 255));
+    theBtClear.setBackground(new Color(220, 208, 255)); // Light pastel purple background
     theBtClear.addActionListener(e -> cont.doClearFields());
     cp.add(theBtClear);                             // Add to canvas
     
     theBtBought.setBounds( 16, 25+60*3, 80, 40 );   // Bought Button
-    theBtBought.setBackground(new Color(220, 208, 255));
+    theBtBought.setBackground(new Color(220, 208, 255)); // Light pastel purple background
     theBtBought.addActionListener(                  // Call back code
       e -> cont.doBought() );
     cp.add( theBtBought );                          //  Add to canvas
