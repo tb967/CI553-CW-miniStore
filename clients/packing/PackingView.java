@@ -109,7 +109,7 @@ public class PackingView implements Observer
     {
       theOutput.setText( basket.getDetails() );
     } else {
-      theOutput.setText("Pack or clear your order here.");
+      theOutput.setText("Pack or clear your order here."); // User message
     }
   }
 

@@ -23,7 +23,7 @@ public class CustomerView implements PropertyChangeListener
 {
   class Name                              // Names of buttons
   {
-    public static final String CHECK  = "<html>Check <br>ID</html>";
+    public static final String CHECK  = "<html>Check <br>ID</html>"; // The whole text fits in the button
     public static final String CLEAR  = "Clear";
   }
 
@@ -36,7 +36,7 @@ public class CustomerView implements PropertyChangeListener
   private final JTextArea   theOutput  = new JTextArea();
   private final JScrollPane theSP      = new JScrollPane();
   private final JButton     theBtCheck = new JButton( Name.CHECK );
-  private final JButton     theBtCheckName = new JButton( "<html>Check<br>Name</html>" );
+  private final JButton     theBtCheckName = new JButton( "<html>Check<br>Name</html>" ); // The whole text fits in the button
   private final JButton     theBtClear = new JButton( Name.CLEAR );
 
   private CustomerModel model;
@@ -80,9 +80,9 @@ public class CustomerView implements PropertyChangeListener
       e -> cont.doCheck( theInput.getText() ) );
     cp.add( theBtCheck );                           //  Add to canvas
 
-    theBtCheckName.setBounds( 16, 25+60*1, 80, 40 );    // Check button
+    theBtCheckName.setBounds( 16, 25+60*1, 80, 40 );    // CheckName button
     theBtCheckName.setBackground(new Color(153, 217, 234)); // Light pastel blue background
-    theBtCheckName.setForeground(Color.RED);
+    // theBtCheckName.setForeground(Color.RED);
     theBtCheckName.addActionListener(                   // Call back code
       e -> cont.doCheckByName( theInput.getText() ) );
     cp.add( theBtCheckName ); 
@@ -102,7 +102,7 @@ public class CustomerView implements PropertyChangeListener
     cp.add( theInput );                             //  Add to canvas
     
     theSP.setBounds( 110, 100, 270, 160 );          // Scrolling pane
-    theOutput.setText( "Your search will appear here." );     //  Blank
+    theOutput.setText( "Your search will appear here." );
     theOutput.setFont( f );                         //  Uses font  
     cp.add( theSP );                                //  Add to canvas
     theSP.getViewport().add( theOutput );           //  In TextArea
@@ -166,7 +166,7 @@ public void propertyChange(PropertyChangeEvent evt) {
 	    theInput.requestFocus();               // Focus is here
 		break;
 		
-	case "doClear":
+	case "doClear":         // The clear button clears most areas
 		thePicture.clear();
 		theInput.setText("");
 		theOutput.setText("Start a new search.");

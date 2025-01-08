@@ -23,7 +23,7 @@ public class CashierView implements Observer
   private static final String CHECK  = "Check";
   private static final String BUY    = "Buy";
   private static final String CLEAR  = "Clear";
-  private static final String BOUGHT = "<html>Bought<br>/Pay</html>";
+  private static final String BOUGHT = "<html>Bought<br>/Pay</html>"; // The whole text fits in button
 
   private final JLabel      pageTitle  = new JLabel();
   private final JLabel      theAction  = new JLabel();
@@ -100,7 +100,7 @@ public class CashierView implements Observer
     cp.add( theAction );                            //  Add to canvas
 
     buyQuantity.setBounds( 260, 50, 120, 40 );         // Input Area
-    buyQuantity.setText("1");                           // Blank
+    buyQuantity.setText("1");                           // Set to 1
     cp.add( buyQuantity );                             //  Add to canvas
     
     theInput.setBounds( 110, 50, 120, 40 );         // Input Area
